@@ -1,0 +1,124 @@
+ABAP
+Ada 95
+AmigaE
+BETA
+Blue
+Boo
+C++
+C#
+Ceylon
+Chapel
+Clarion
+CLU
+COBOL
+Cobra
+ColdFusion
+Common Lisp
+COOL
+CorbaScript
+Curl
+D
+Dart
+DataFlex
+Dylan
+E
+Eiffel
+Sather
+Elixir
+Falcon
+Fortran 2003
+FPr
+FreeBASIC
+F-Script
+F#
+Gambas
+Graphtalk
+IDLscript
+J
+J#
+JADE
+Java
+Groovy
+Join Java
+X10
+Julia
+Lasso
+Lava
+Lexico
+Lingo
+LISP
+Logtalk
+MATLAB
+Modula-2
+Modula-3
+Nemerle
+NetRexx
+Noop
+Oberon (Oberon-1)
+Oberon-2
+Object Pascal
+Delphi
+Free Pascal
+Turbo Pascal
+Object REXX
+Objective C
+OCaml
+Omnis Studio
+OpenEdge Advanced Business Language
+Oz
+Mozart Programming System
+Perl
+PHP
+Power Builder
+ABCL/1
+ABCL/R
+ABCL/R2
+ABCL/c+
+Agora
+Cecil
+Cel
+ECMAScript
+ActionScript
+JavaScript
+JScript
+Etoys
+Io
+Lua
+Lisaac
+MOO
+NewtonScript
+Obliq
+REBOL
+Self
+Python
+REALbasic
+Revolution
+Ruby
+Rust
+S
+R
+Scala
+Seed7
+SenseTalk
+Simula
+Smalltalk
+Self
+Bistro
+Squeak
+Squirrel
+Swift
+TADS
+Tcl
+Xotcl
+Snit
+incr Tcl
+Ubercode
+Vala
+Visual Basic
+Visual Basic .NET
+VBScript
+Visual Basic for Applications (VBA)
+Visual FoxPro
+Visual Prolog
+XBase++
+ZZT-oop
