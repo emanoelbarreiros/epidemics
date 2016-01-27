@@ -213,8 +213,8 @@ def integra_suc_infec(contagem_projetos_mes, contagem_linguagem, projetos_usuari
     # si. Assim, quando um projeto for criado com a linguagem de interesse, todos os participantes daquele projeto
     # devem ser considerados infectados
     for chave_contagem_linguagem in chaves_contagem_linguagem:
-        # nascidos = contagem_projetos_mes[chave_contagem_linguagem]
-        # nascimentos.append(nascidos)
+        nascidos = contagem_projetos_mes[chave_contagem_linguagem]
+        nascimentos.append(nascidos)
         infectados += contagem_linguagem.contagem_ano[chave_contagem_linguagem]
         infec.append(infectados)
         suscetiveis -= contagem_linguagem.contagem_ano[chave_contagem_linguagem]
