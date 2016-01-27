@@ -180,7 +180,7 @@ def obtem_projetos_linguagens(arquivo):
     return projetos_linguagens
 
 
-def integra_suc_infec(contagem_linguagem, projetos_usuarios, projetos_linguagens, projetos_mes, universo):
+def integra_suc_infec(contagem_projetos_mes, contagem_linguagem, projetos_usuarios, projetos_linguagens, projetos_mes, universo):
     """
     :param contagem_projetos_mes:
     :param contagem_linguagem:
