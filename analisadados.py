@@ -49,7 +49,6 @@ class Contagem:
             mes_inteiro = 1
             ano_inteiro += 1
 
-        mes_string = ''
         if mes_inteiro < 10:
             mes_string = '0' + str(mes_inteiro)
         else:
@@ -180,7 +179,7 @@ def obtem_projetos_linguagens(arquivo):
     return projetos_linguagens
 
 
-def integra_suc_infec(contagem_projetos_mes, contagem_linguagem, projetos_usuarios, projetos_linguagens, projetos_mes, universo):
+def integra_suc_infec(linguagem, projetos_usuarios, projetos_linguagens, projetos_mes, universo):
     """
     :param contagem_projetos_mes:
     :param contagem_linguagem:
@@ -189,7 +188,6 @@ def integra_suc_infec(contagem_projetos_mes, contagem_linguagem, projetos_usuari
     :param universo:
     :return:
     """
-    nascimentos = []
     suc = []
     infec = []
 
@@ -202,7 +200,6 @@ def integra_suc_infec(contagem_projetos_mes, contagem_linguagem, projetos_usuari
     chaves_contagem_linguagem.sort()
 
     suc.append(suc_inicial)
-    nascimentos.append(0)
     infec.append(0)
 
     infectados = 0
@@ -213,8 +210,6 @@ def integra_suc_infec(contagem_projetos_mes, contagem_linguagem, projetos_usuari
     # si. Assim, quando um projeto for criado com a linguagem de interesse, todos os participantes daquele projeto
     # devem ser considerados infectados
     for chave_contagem_linguagem in chaves_contagem_linguagem:
-        nascidos = contagem_projetos_mes[chave_contagem_linguagem]
-        nascimentos.append(nascidos)
         infectados += contagem_linguagem.contagem_ano[chave_contagem_linguagem]
         infec.append(infectados)
         suscetiveis -= contagem_linguagem.contagem_ano[chave_contagem_linguagem]
@@ -280,7 +275,7 @@ def filtra_projetos(projetos_mes, projetos_linguagens, universo):
 
 
 # linguagens a considerar no universo de possiveis de projetos OO
-with open('linguagens-oo2.txt') as arquivo_universo:
+with open('linguagens-relacionadas-java.txt') as arquivo_universo:
     linguagens_universo = arquivo_universo.read().splitlines()
 
 projeto_mes = obtem_projeto_mes('created2')
@@ -300,8 +295,7 @@ for linha in arquivo_linguagens:
         contagem_linguagem[linguagem].preenche_espacos_vazios()
         chaves = contagem_linguagem[linguagem].contagem_ano.keys()
 
-        suc, infec = integra_suc_infec(contagem_projetos_mes, contagem_linguagem[linguagem],
-                                       projetos_usuarios, projetos_linguagens, projeto_mes, linguagens_universo)
+        suc, infec = integra_suc_infec(linguagem, projetos_linguagens, projeto_mes, linguagens_universo)
 
         diretorio = os.path.dirname(os.path.abspath(__file__)) + '/' + linguagem
 
