@@ -1,0 +1,11 @@
+C
+sed
+AWK
+Shell
+PHP
+Ruby
+Pikt
+Falcon
+Windows PowerShell
+Julia
+Perl

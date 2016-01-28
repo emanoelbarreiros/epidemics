@@ -275,7 +275,7 @@ def filtra_projetos(projetos_mes, projetos_linguagens, universo):
 
 
 # linguagens a considerar no universo de possiveis de projetos OO
-with open('linguagens-relacionadas-java.txt') as arquivo_universo:
+with open('universo-Java.txt') as arquivo_universo:
     linguagens_universo = arquivo_universo.read().splitlines()
 
 projeto_mes = obtem_projeto_mes('created2')

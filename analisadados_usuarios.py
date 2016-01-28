@@ -34,7 +34,7 @@ def obter_linguagens(arquivo):
     return retorno
 
 
-def obtem_projetos_linguagens(arquivo):
+def obtem_projetos_linguagens(arquivo, projetos_mes):
     """
     :param arquivo: arquivo a ser aberto, contendo em cada linha, separado por virgulas, o projeto e suas linguagens
     :return: um dicionario com o nome do projeto como chave e uma lista com as linguagens que ele usa como valor
@@ -44,7 +44,7 @@ def obtem_projetos_linguagens(arquivo):
     projetos_linguagens = {}
     for linha in arquivo_linguagens:
         tokens = string.split(linha.rstrip(), ',')
-        if (len(tokens) > 1) and projeto_mes.has_key(tokens[0]):
+        if (len(tokens) > 1) and projetos_mes.has_key(tokens[0]):
             # pega todas as linguagens do projeto da lista de tokens, desprezando a primeira posicao, que eh o nome
             # do projeto
             projetos_linguagens[tokens[0]] = tokens[1:]
@@ -184,7 +184,7 @@ def corrige_ano_mes(data):
     :param data: mes no formato AAAAMM
     :return: mes no formato AAAA-MMM, ex: 201011 sera alterado para 2010-NOV
     """
-    print 'entrando na funcao', sys._getframe().f_code.co_name
+    # print 'entrando na funcao', sys._getframe().f_code.co_name
     ano = data[:4]
     mes = ''
     if data.endswith('01'):
@@ -269,20 +269,27 @@ def integra_suc_infec(linguagem, projetos_usuarios, projetos_linguagens, projeto
     return suc, infec
 
 
-projeto_mes = obtem_projeto_mes('created2')
-projetos_linguagens = obtem_projetos_linguagens('programming-language')
+projeto_mes_inicial = obtem_projeto_mes('created2')
+projetos_linguagens = obtem_projetos_linguagens('programming-language', projeto_mes_inicial)
 projetos_usuarios = obter_projetos_usuarios('foaf-nick')
-
-# linguagens a considerar no universo de possiveis de projetos OO
-with open('linguagens-relacionadas-java.txt') as arquivo_universo:
-    linguagens_universo = arquivo_universo.read().splitlines()
-
-# filtra os projetos para incluir apenas aqueles que usam linguagens que estao no universo
-projeto_mes = filtra_projetos(projeto_mes, projetos_linguagens, linguagens_universo)
 
 linguagens = obter_linguagens('linguagens.txt')
 
 for linguagem in linguagens:
+    # linguagens a considerar no universo de possiveis de projetos OO
+    if linguagem == 'C#':
+        nome_arquivo_universo = 'universo-Csharp.txt'
+    elif linguagem == 'C++':
+        nome_arquivo_universo = 'universo-Cpp.txt'
+    else:
+        nome_arquivo_universo = 'universo-' + linguagem + '.txt'
+
+    with open(nome_arquivo_universo) as arquivo_universo:
+        linguagens_universo = arquivo_universo.read().splitlines()
+    print '\nIniciando processamento para a linguagem ' + linguagem
+    # filtra os projetos para incluir apenas aqueles que usam linguagens que estao no universo
+    projeto_mes = filtra_projetos(projeto_mes_inicial, projetos_linguagens, linguagens_universo)
+
     suc, infec = integra_suc_infec(linguagem, projetos_usuarios, projetos_linguagens, projeto_mes, linguagens_universo)
 
     diretorio = os.path.dirname(os.path.abspath(__file__)) + '/' + linguagem
@@ -305,6 +312,8 @@ for linguagem in linguagens:
             arquivo_saida.flush()
     except TypeError:
         print 'i: ' + str(i) + ', infec[i]: ' + str(infec[i])
+
+    print '\nProcessamento para a linguagem ' + linguagem + ' encerrado.'
     # arquivo_saida = open(diretorio + '/saida_' + linguagem + '_nasc.txt', 'w')
     # for i in range(len(nascimentos)):
         # arquivo_saida.write(str(i) + '   ' + str(nascimentos[i]) + '\n')

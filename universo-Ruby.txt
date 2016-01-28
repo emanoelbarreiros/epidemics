@@ -1,0 +1,10 @@
+Smalltalk
+Perl
+Ferite
+Falcon
+Fantom
+CoffeeScript
+Elixir
+Julia
+Swift
+Ruby
